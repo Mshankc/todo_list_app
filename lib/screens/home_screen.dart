@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     topRight: Radius.circular(20),
                   ),
                 ),
-                child: const SizedBox(height: 300, child: TaskList()),
+                child: const SizedBox(height: 400, child: TaskList()),
                 //     }),
               ),
             ),
@@ -86,12 +86,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<dynamic> taskBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (BuildContext context) {
-        var edgeInsets = const EdgeInsets.all(8);
         return Container(
             padding: const EdgeInsets.all(24),
             alignment: Alignment.center,
-            height: 400,
+            height: MediaQuery.sizeOf(context).height * 0.70,
             width: MediaQuery.sizeOf(context).width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -105,8 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 18),
                 ),
                 Container(
-                  padding: edgeInsets,
-                  child: TextFormField(
+                  padding: const EdgeInsets.all(8),
+                  child: TextField(
+                    autofocus: true,
                     decoration: InputDecoration(
                       fillColor: const Color.fromARGB(255, 197, 197, 197),
                       filled: true,
