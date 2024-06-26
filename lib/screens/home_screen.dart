@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/task_list.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -23,17 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Icons.add,
             color: Colors.white,
           ),
-          onPressed: () => showModalBottomSheet(
-            context: context,
-            builder: (BuildContext context) {
-              return Container(
-                alignment: Alignment.center,
-                height: 400,
-                width: MediaQuery.sizeOf(context).width,
-                child: const Text('hi whats app'),
-              );
-            },
-          ),
+          onPressed: () => taskBottomSheet(context),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,30 +67,75 @@ class _HomeScreenState extends State<HomeScreen> {
                 // width: MediaQuery.sizeOf(context).width,
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20))),
-                child: ListView(
-                  children: [
-                    CheckboxListTile(
-                      onChanged: (value) {},
-                      value: false,
-                      title: const Text('Buy Milk'),
-                    ),
-                    CheckboxListTile(
-                      onChanged: (value) {},
-                      value: false,
-                      title: const Text('Get Newspaper'),
-                    ),
-                  ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
                 ),
+                child: const SizedBox(height: 300, child: TaskList()),
                 //     }),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Future<dynamic> taskBottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        var edgeInsets = const EdgeInsets.all(8);
+        return Container(
+            padding: const EdgeInsets.all(24),
+            alignment: Alignment.center,
+            height: 400,
+            width: MediaQuery.sizeOf(context).width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Text(
+                  'Add Task',
+                  style: TextStyle(
+                      color: Colors.lightBlueAccent,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 18),
+                ),
+                Container(
+                  padding: edgeInsets,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      fillColor: const Color.fromARGB(255, 197, 197, 197),
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: BorderSide.none),
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
+                    decoration: BoxDecoration(
+                        color: Colors.lightBlueAccent,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Text(
+                      'ADD',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16),
+                    ),
+                  ),
+                )
+              ],
+            ));
+      },
     );
   }
 }
