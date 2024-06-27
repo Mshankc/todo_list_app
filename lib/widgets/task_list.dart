@@ -23,57 +23,13 @@ class _TaskListState extends State<TaskList> {
             print(value);
           }),
           value: isChecked,
-          title: const Text('Buy Milk'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
-        ),
-        CheckboxListTile(
-          onChanged: (value) {},
-          value: false,
-          title: const Text('Do Shopping'),
+          title: Text(
+            'Buy Milk',
+            style: TextStyle(
+                decoration: isChecked == true
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none),
+          ),
         ),
       ],
     );
