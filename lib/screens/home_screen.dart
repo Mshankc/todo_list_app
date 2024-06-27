@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int taskNumber = 4;
   bool check = false;
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Icons.add,
             color: Colors.white,
           ),
-          onPressed: () => taskBottomSheet(context),
+          onPressed: () => taskBottomSheet(context, controller),
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +84,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<dynamic> taskBottomSheet(BuildContext context) {
+  Future<dynamic> taskBottomSheet(
+      BuildContext context, TextEditingController controller) {
     return showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -107,6 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   child: TextField(
+                    controller: controller,
                     autofocus: true,
                     decoration: InputDecoration(
                       fillColor: const Color.fromARGB(255, 197, 197, 197),
@@ -118,6 +121,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 GestureDetector(
+                  onTap: () {
+                    controller.clear();
+                    Navigator.pop(context);
+                  },
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
                     padding: const EdgeInsets.symmetric(

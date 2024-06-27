@@ -9,9 +9,15 @@ class TaskList extends StatefulWidget {
   State<TaskList> createState() => _TaskListState();
 }
 
-bool isChecked = false;
-
 class _TaskListState extends State<TaskList> {
+  bool isChecked = false;
+
+  void checkBoxCallBack(bool value) {
+    setState(() {
+      isChecked = !value;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -25,6 +31,18 @@ class _TaskListState extends State<TaskList> {
           value: isChecked,
           title: Text(
             'Buy Milk',
+            style: TextStyle(
+                decoration: isChecked == true
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none),
+          ),
+        ),
+        CheckboxListTile(
+          activeColor: Colors.lightBlueAccent,
+          onChanged: (value) => checkBoxCallBack(value!),
+          value: isChecked,
+          title: Text(
+            'Drop Fruits',
             style: TextStyle(
                 decoration: isChecked == true
                     ? TextDecoration.lineThrough
